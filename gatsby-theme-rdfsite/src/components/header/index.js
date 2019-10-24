@@ -1,6 +1,6 @@
-import { Link } from 'gatsby';
+import { Link, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
-import KG from '../svgs/knowgraphs-logo.inline.svg';
+import Image from '../image';
 
 const links = [
   { url: '/', text: 'Home' },
@@ -12,13 +12,30 @@ const links = [
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
+  const {
+    site: { siteMetadata: site },
+  } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  );
 
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/" className="navbar-item no-opacity">
-          <KG className="dice-nav-logo" />
-          KnowGraphs
+          <Image
+            filename="site-icon.png"
+            alt="Site logo"
+            className="dice-nav-logo"
+          />
+          {site.title}
         </Link>
 
         <a
@@ -27,8 +44,7 @@ const Header = () => {
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarMenu"
-          onClick={() => setExpanded(!expanded)}
-        >
+          onClick={() => setExpanded(!expanded)}>
           <span aria-hidden="true" />
           <span aria-hidden="true" />
           <span aria-hidden="true" />
@@ -37,8 +53,7 @@ const Header = () => {
 
       <div
         id="navbarMenu"
-        className={`navbar-menu ${expanded ? 'is-active' : ''}`}
-      >
+        className={`navbar-menu ${expanded ? 'is-active' : ''}`}>
         <div className="navbar-start">
           {links.map(l => (
             <Link
@@ -46,8 +61,7 @@ const Header = () => {
               to={l.url}
               className="navbar-item"
               activeClassName="is-active"
-              partiallyActive={l.url !== '/'}
-            >
+              partiallyActive={l.url !== '/'}>
               {l.text}
             </Link>
           ))}

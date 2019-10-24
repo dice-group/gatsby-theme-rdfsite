@@ -1,4 +1,4 @@
-import { Link, navigate } from 'gatsby';
+import { Link, navigate, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import ContactForm from '../components/contact';
@@ -14,6 +14,21 @@ export default function Home() {
   const newsRef = React.createRef();
   const tweetsRef = React.createRef();
   const contactRef = React.createRef();
+
+  const {
+    site: { siteMetadata: site },
+  } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            description
+          }
+        }
+      }
+    `
+  );
 
   const menu = [
     { target: heroRef, title: 'About', url: 'about' },
@@ -33,18 +48,11 @@ export default function Home() {
       <section id="about" className="hero hero-row is-medium" ref={heroRef}>
         <div className="hero-body">
           <div className="container content">
-            <h1 className="title">Welcome to KnowGraphs</h1>
-            <p className="hero-text">
-              The overall objective of KnowGraphs is to scale KGs to be
-              accessible to a wide audience of users across multiple domains
-              including (1) companies (in domains including Industry 4.0,
-              bio-medicine, finance, law) of all sizes and even (2) end users
-              (e.g., through personal assistants and web search).
-            </p>
+            <h1 className="title">Welcome to {site.title}</h1>
+            <p className="hero-text">{site.description}</p>
             <button
               onClick={() => navigate('/news/')}
-              className="button is-link action-button"
-            >
+              className="button is-link action-button">
               Learn more
             </button>
           </div>
@@ -54,8 +62,7 @@ export default function Home() {
       <section
         id="funded"
         className="hero has-background-light is-medium"
-        ref={fundedRef}
-      >
+        ref={fundedRef}>
         <div className="hero-body">
           <div className="container content">
             <div className="section-header">
@@ -83,8 +90,7 @@ export default function Home() {
       <section
         id="tweets"
         className="hero has-background-white is-medium"
-        ref={tweetsRef}
-      >
+        ref={tweetsRef}>
         <div className="hero-body">
           <div className="container content">
             <div className="section-header">
@@ -110,8 +116,7 @@ export default function Home() {
       <section
         id="news"
         className="hero has-background-light is-medium"
-        ref={newsRef}
-      >
+        ref={newsRef}>
         <div className="hero-body">
           <div className="container content">
             <div className="section-header">
@@ -129,8 +134,7 @@ export default function Home() {
       <section
         id="contact"
         className="hero has-background-white is-medium"
-        ref={contactRef}
-      >
+        ref={contactRef}>
         <div className="hero-body">
           <div className="container contact-section">
             <div className="section-header">
