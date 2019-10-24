@@ -1,0 +1,12 @@
+@prefix kg: <https://dice-research.org/> .
+@prefix schema: <https://schema.dice-research.org/> .
+
+kg:NadineJochimsen a schema:Person ;
+  schema:name "Nadine Jochimsen" ;
+  schema:namePrefix "" ;
+  schema:role kg:ProjectManager ;
+  schema:phone <tel:+49-341-9732367> ;
+  schema:email <mailto:jochimsen@informatik.uni-leipzig.de> ;
+  schema:photo "jochimsen.jpg" ;
+  schema:link "http://aksw.org/NadineJochimsen.html" .
+

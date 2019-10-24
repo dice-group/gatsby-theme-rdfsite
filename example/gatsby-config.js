@@ -1,3 +1,8 @@
 module.exports = {
-  plugins: [{ resolve: `gatsby-theme-minimal`, options: {} }],
-}
+  siteMetadata: {
+    title: `Example RDF website`,
+    description: `Example RDF website generated with Gatsby`,
+    author: `@yamalight`,
+  },
+  plugins: [{ resolve: `gatsby-theme-rdfsite`, options: {} }],
+};
