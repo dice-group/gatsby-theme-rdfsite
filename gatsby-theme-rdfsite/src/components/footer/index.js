@@ -1,7 +1,7 @@
-import { Link } from 'gatsby';
+import { Link, useStaticQuery } from 'gatsby';
 import React from 'react';
+import Image from '../image';
 import Social from '../social';
-import KG from '../svgs/knowgraphs.inline.svg';
 
 const links = [
   { url: '/team/', text: 'Team' },
@@ -13,30 +13,40 @@ const links = [
   { url: '/privacy', text: 'Privacy Policy' },
 ];
 
-const Footer = () => (
-  <div className="footer">
-    <div className="columns" style={{ flex: 1 }}>
-      <div className="column is-flex">
-        <KG className="dice-nav-logo-footer" />
-      </div>
-      <div className="column dice-footer">
-        {links.map(l => (
-          <Link key={l.url} to={l.url}>
-            {l.text}
-          </Link>
-        ))}
-      </div>
-      <Social hiddenMobile={false} />
-    </div>
+const Footer = () => {
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            footer
+          }
+        }
+      }
+    `
+  );
 
-    <div className="horizontal-separator" />
+  return (
+    <div className="footer">
+      <div className="columns" style={{ flex: 1 }}>
+        <div className="column is-flex">
+          <Image filename="site-icon.png" alt="Site logo" className="dice-nav-logo-footer" />
+        </div>
+        <div className="column dice-footer">
+          {links.map(l => (
+            <Link key={l.url} to={l.url}>
+              {l.text}
+            </Link>
+          ))}
+        </div>
+        <Social hiddenMobile={false} />
+      </div>
 
-    <div className="is-flex horizontally-centered funding-text">
-      This project has received funding from the European Union’s Horizon 2020
-      research and innovation programme under the Marie Skłodowska-Curie grant
-      agreement No 860801.
+      <div className="horizontal-separator" />
+
+      <div className="is-flex horizontally-centered funding-text">{site.siteMetadata.footer}</div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Footer;

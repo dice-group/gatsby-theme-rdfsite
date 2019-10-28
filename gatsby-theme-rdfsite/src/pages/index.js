@@ -50,47 +50,31 @@ export default function Home() {
           <div className="container content">
             <h1 className="title">Welcome to {site.title}</h1>
             <p className="hero-text">{site.description}</p>
-            <button
-              onClick={() => navigate('/news/')}
-              className="button is-link action-button">
+            <button onClick={() => navigate('/news/')} className="button is-link action-button">
               Learn more
             </button>
           </div>
         </div>
       </section>
 
-      <section
-        id="funded"
-        className="hero has-background-light is-medium"
-        ref={fundedRef}>
+      <section id="funded" className="hero has-background-light is-medium" ref={fundedRef}>
         <div className="hero-body">
           <div className="container content">
             <div className="section-header">
-              <h1 className="title">Research areas</h1>
+              <h1 className="title">Custom area</h1>
             </div>
 
             <div className="research-areas-list">
-              <div className="research-area-item research-area-rep">
-                Representation
-              </div>
-              <div className="research-area-item research-area-cnm">
-                Construction <br /> and <br /> Maintenance
-              </div>
-              <div className="research-area-item research-area-op">
-                Operation
-              </div>
-              <div className="research-area-item research-area-expl">
-                Exploitation
-              </div>
+              <div className="research-area-item research-area-rep">Some</div>
+              <div className="research-area-item research-area-cnm">Custom</div>
+              <div className="research-area-item research-area-op">Content</div>
+              <div className="research-area-item research-area-expl">Here</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section
-        id="tweets"
-        className="hero has-background-white is-medium"
-        ref={tweetsRef}>
+      <section id="tweets" className="hero has-background-white is-medium" ref={tweetsRef}>
         <div className="hero-body">
           <div className="container content">
             <div className="section-header">
@@ -113,10 +97,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="news"
-        className="hero has-background-light is-medium"
-        ref={newsRef}>
+      <section id="news" className="hero has-background-light is-medium" ref={newsRef}>
         <div className="hero-body">
           <div className="container content">
             <div className="section-header">
@@ -131,10 +112,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="contact"
-        className="hero has-background-white is-medium"
-        ref={contactRef}>
+      <section id="contact" className="hero has-background-white is-medium" ref={contactRef}>
         <div className="hero-body">
           <div className="container contact-section">
             <div className="section-header">
