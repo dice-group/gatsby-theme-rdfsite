@@ -1,13 +1,13 @@
 {
   "name": "gatsby-theme-rdfsite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.js",
   "author": "Tim Ermilov <yamalight@gmail.com> (@yamalight)",
   "license": "MIT",
   "peerDependencies": {
     "gatsby": "^2.6.0"
   },
-  "devDependencies": {
+  "dependencies": {
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.22",
     "@mdx-js/mdx": "^1.5.1",
