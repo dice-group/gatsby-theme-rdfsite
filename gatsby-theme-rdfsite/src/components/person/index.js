@@ -2,8 +2,15 @@ import { Link } from 'gatsby';
 import React from 'react';
 import Image from '../image';
 
+const WrapLink = ({ person, children }) =>
+  person.link && person.link.length > 0 ? (
+    <a href={person.link}>{children}</a>
+  ) : (
+    <Link to={person.path}>{children}</Link>
+  );
+
 export const Person = ({ person }) => (
-  <Link to={person.path}>
+  <WrapLink person={person}>
     <div className="person">
       <div className="person-image">
         <Image
@@ -16,7 +23,7 @@ export const Person = ({ person }) => (
         {person.namePrefix} {person.name}
       </span>
     </div>
-  </Link>
+  </WrapLink>
 );
 
 export const rdfToPerson = ({ data, path }) => ({
