@@ -49,7 +49,7 @@ module.exports = {
       resolve: `gatsby-plugin-purgecss`,
       options: {
         tailwind: true,
-        purgeOnly: [`src/components/styles/main.css`],
+        purgeOnly: [`src/styles/main.css`, `src/styles/custom.css`],
       },
     },
 

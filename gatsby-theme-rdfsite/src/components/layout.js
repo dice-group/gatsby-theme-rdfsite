@@ -11,10 +11,11 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ExternalLink from '../components/externalLink';
+import '../styles/custom.css';
+import '../styles/main.css';
 import Footer from './footer';
 import Header from './header';
 import Image from './image';
-import './styles/main.css';
 import Table from './table';
 
 const mdxComponents = { Image, Link, ExternalLink, Table };
