@@ -22,19 +22,15 @@ export default function Partners({
         {Object.keys(partnersByType)
           .sort((a, b) => b.localeCompare(a))
           .map(type => (
-            <div
-              className="flex is-vertical"
-              style={{ marginBottom: '3em' }}
-              key={type}
-            >
-              <h2 style={{ marginBottom: '1em' }}>{type}</h2>
-              <div className="columns is-multiline is-5 is-variable">
+            <div key={type}>
+              <h2 className="mb-1">{type}</h2>
+              <div className="columns">
                 {partnersByType[type]
                   .sort((a, b) =>
                     a.node.data.name.localeCompare(b.node.data.name)
                   )
                   .map(({ node }) => (
-                    <div className="column is-one-third" key={node.id}>
+                    <div className="column is-one-quarter" key={node.id}>
                       <Partner partner={node} />
                     </div>
                   ))}

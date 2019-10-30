@@ -6,47 +6,34 @@ const SideMenu = ({ targets }) => {
   const [currentUrl, setCurrentUrl] = useState(null);
 
   useEffect(() => {
-    const observers = targets.map(({ target: { current } }) => {
-      const observer = new IntersectionObserver(
-        entries => {
-          const entry = entries.filter(entry => entry.isIntersecting).pop();
-          if (!entry) {
-            return;
-          }
-          const target = targets.find(t => t.target.current === entry.target);
-          if (!target) {
-            return;
-          }
-          setCurrentUrl(target.url);
-        },
-        {
-          threshold: 0.25,
-          rootMargin: '0px',
+    const observer = new IntersectionObserver(
+      entries => {
+        const intEntries = entries.filter(
+          entry => entry.isIntersecting && entry.intersectionRatio === 1
+        );
+        if (!intEntries.length) {
+          return;
         }
-      );
-      observer.observe(current);
+        const entry = intEntries.pop();
+        const target = targets.find(t => t.target.current === entry.target);
+        if (!target) {
+          return;
+        }
+        setCurrentUrl(target.url);
+      },
+      {
+        threshold: 1,
+        rootMargin: '0px',
+      }
+    );
 
-      return observer;
-    });
+    targets.forEach(({ target: { current } }) => observer.observe(current));
 
-    return () => observers.forEach(observer => observer.disconnect());
+    return () => observer.disconnect();
   }, targets);
 
   return (
-    <div
-      className="column is-flex is-hidden-mobile"
-      style={{
-        position: 'fixed',
-        right: 0,
-        top: 96,
-        height: 'calc(60% - 96px)',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        flexDirection: 'column',
-        maxWidth: 100,
-        margin: '0.5em',
-      }}
-    >
+    <div className="sidemenu">
       {targets.map(l => (
         <Item key={l.url} item={l} isCurrent={currentUrl === l.url} />
       ))}

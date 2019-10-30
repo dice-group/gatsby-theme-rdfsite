@@ -1,22 +1,29 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import Image from '../image';
+import Phone from '../phone';
 
 const contactsQuery = graphql`
   {
     allRdf(
       filter: {
-        id: {
-          in: [
-            "https://dice-research.org/AxelCyrilleNgongaNgomo"
-            "https://dice-research.org/NadineJochimsen"
-          ]
+        data: {
+          rdf_type: {
+            elemMatch: { id: { eq: "https://schema.dice-research.org/Person" } }
+          }
+          contact: {
+            id: {
+              in: [
+                "https://dice-research.org/MainContact"
+                "https://dice-research.org/AdditionalContact"
+              ]
+            }
+          }
         }
       }
     ) {
       edges {
         node {
-          id
           path
           data {
             name
@@ -24,6 +31,14 @@ const contactsQuery = graphql`
             phone
             email
             photo
+            role {
+              data {
+                name
+              }
+            }
+            contact {
+              id
+            }
           }
         }
       }
@@ -36,91 +51,61 @@ const ContactForm = () => {
     allRdf: { edges },
   } = useStaticQuery(contactsQuery);
 
-  const axelProfile = edges.find(({ node }) =>
-    node.id.endsWith('AxelCyrilleNgongaNgomo')
+  const mainProfile = edges.find(
+    ({ node }) =>
+      node.data.contact.id === 'https://dice-research.org/MainContact'
   ).node;
-  const nadineProfile = edges.find(({ node }) =>
-    node.id.endsWith('NadineJochimsen')
+  const additionalProfile = edges.find(
+    ({ node }) =>
+      node.data.contact.id === 'https://dice-research.org/AdditionalContact'
   ).node;
 
   return (
-    <div className="columns">
-      <style jsx>{`
-        .column {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .round-image {
-          width: 200px;
-          height: 200px;
-          border-radius: 100px;
-          overflow: hidden;
-        }
-
-        .property-name {
-          padding-top: 20px;
-          margin-bottom: 5px !important;
-          font-weight: normal;
-        }
-
-        .property-value {
-          font-weight: 500;
-          padding-top: 0;
-          margin-bottom: 0 !important;
-        }
-
-        .form-column {
-          flex-direction: column;
-          justify-content: center;
-        }
-      `}</style>
-      <div className="column is-half">
+    <div className="contacts">
+      <div className="column">
         <div className="round-image">
           <Image
-            filename={axelProfile.data.photo}
-            alt={`${axelProfile.data.name} photo`}
+            filename={mainProfile.data.photo}
+            alt={`${mainProfile.data.name} photo`}
           />
         </div>
-        <p className="property-name has-text-grey-light">Project Coordinator</p>
+        <p className="property-name">Head of DICE</p>
         <p className="property-value">
-          {axelProfile.data.namePrefix} {axelProfile.data.name}
+          {mainProfile.data.namePrefix} {mainProfile.data.name}
         </p>
 
-        <p className="property-name has-text-grey-light">Email</p>
-        <a className="property-value brand-color" href={axelProfile.data.email}>
-          {axelProfile.data.email.replace('mailto:', '')}
+        <p className="property-name">Email</p>
+        <a className="property-value brand-color" href={mainProfile.data.email}>
+          {mainProfile.data.email.replace('mailto:', '')}
         </a>
 
-        <p className="property-name has-text-grey-light">Phone</p>
+        <p className="property-name">Phone</p>
         <p className="property-value">
-          {axelProfile.data.phone.replace('tel:', '')}
+          <Phone phone={mainProfile.data.phone} />
         </p>
       </div>
-      <div className="column is-half">
+      <div className="column">
         <div className="round-image">
           <Image
-            filename={nadineProfile.data.photo}
-            alt={`${nadineProfile.data.name} photo`}
+            filename={additionalProfile.data.photo}
+            alt={`${additionalProfile.data.name} photo`}
           />
         </div>
-        <p className="property-name has-text-grey-light">Project Manager</p>
+        <p className="property-name">{additionalProfile.data.role.data.name}</p>
         <p className="property-value">
-          {nadineProfile.data.namePrefix} {nadineProfile.data.name}
+          {additionalProfile.data.namePrefix} {additionalProfile.data.name}
         </p>
 
-        <p className="property-name has-text-grey-light">Email</p>
+        <p className="property-name">Email</p>
         <a
           className="property-value brand-color"
-          href={nadineProfile.data.email}
-        >
-          {nadineProfile.data.email.replace('mailto:', '')}
+          href={additionalProfile.data.email}>
+          {additionalProfile.data.email.replace('mailto:', '')}
         </a>
 
-        <p className="property-name has-text-grey-light">Phone</p>
+        <p className="property-name">Phone</p>
         <p className="property-value">
-          {nadineProfile.data.phone.replace('tel:', '')}
+          <Phone phone={additionalProfile.data.phone} />
         </p>
       </div>
     </div>

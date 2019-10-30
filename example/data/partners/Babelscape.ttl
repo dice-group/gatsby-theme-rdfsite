@@ -1,9 +1,0 @@
-@prefix kgpartner: <https://dice-research.org/partner/> .
-@prefix schema: <https://schema.dice-research.org/> .
-
-kgpartner:Babelscape a schema:Partner ;
-  schema:name "Babelscape" ;
-  schema:country "IT" ;
-  schema:url <http://babelscape.com/> ;
-  schema:kind "Beneficiaries" ;
-  schema:logo "babelscape.png" .

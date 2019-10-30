@@ -30,7 +30,9 @@ const Image = ({ filename, alt, style, className = 'image' }) => {
 
   // if image is not found - default to project logo
   if (!imageEl) {
-    const projectLogo = images.find(element => element.node.fluid.src.endsWith(`/site-icon.png`));
+    const projectLogo = images.find(element =>
+      element.node.fluid.src.endsWith(`/site-icon.png`)
+    );
 
     // if project logo not found - default to empty span
     if (!projectLogo) {
@@ -41,7 +43,15 @@ const Image = ({ filename, alt, style, className = 'image' }) => {
   }
 
   const image = imageEl.node.fluid;
-  return <Img className={className} fluid={image} objectFit="cover" alt={alt} style={style} />;
+  return (
+    <Img
+      className={className}
+      fluid={image}
+      objectFit="cover"
+      alt={alt}
+      style={style}
+    />
+  );
 };
 
 export default React.memo(Image);

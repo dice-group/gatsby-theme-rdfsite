@@ -1,7 +1,13 @@
-import { useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import _ from 'lodash';
 import React, { useMemo } from 'react';
-import { FaFacebook, FaGithub, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+} from 'react-icons/fa';
 
 const icons = {
   twitter: FaTwitter,
@@ -33,18 +39,22 @@ const Social = ({ style, className, hiddenMobile = true }) => {
   const links = useMemo(
     () =>
       Object.keys(site.siteMetadata.social)
-        .filter(key => site.siteMetadata.social[key] && site.siteMetadata.social[key].length > 0)
+        .filter(
+          key =>
+            site.siteMetadata.social[key] &&
+            site.siteMetadata.social[key].length > 0
+        )
         .map(key => ({
           url: site.siteMetadata.social[key],
           text: _.capitalize(key),
           icon: icons[key],
         })),
-    []
+    [site.siteMetadata.social]
   );
 
   return (
     <div
-      className={`column is-flex social ${hiddenMobile ? 'is-hidden-mobile' : ''}`}
+      className="column social"
       style={{
         position: 'fixed',
         left: 0,

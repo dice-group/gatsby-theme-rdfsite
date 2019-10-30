@@ -4,6 +4,7 @@
 kg:NadineJochimsen a schema:Person ;
   schema:name "Nadine Jochimsen" ;
   schema:namePrefix "" ;
+  schema:contact kg:AdditionalContact ;
   schema:role kg:ProjectManager ;
   schema:phone <tel:+49-341-9732367> ;
   schema:email <mailto:jochimsen@informatik.uni-leipzig.de> ;

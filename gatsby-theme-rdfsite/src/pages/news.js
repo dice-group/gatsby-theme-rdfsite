@@ -7,8 +7,7 @@ export default function NewsTemplate() {
   return (
     <Layout>
       <SEO title="News" />
-
-      <div className="container content">
+      <div className="content">
         <h1>News</h1>
         <News />
       </div>

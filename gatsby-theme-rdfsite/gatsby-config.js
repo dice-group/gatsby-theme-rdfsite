@@ -43,8 +43,15 @@ module.exports = {
       },
     },
 
-    // sass support
-    `gatsby-plugin-sass`,
+    // postcss support
+    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        tailwind: true,
+        purgeOnly: [`src/components/styles/main.css`],
+      },
+    },
 
     // emotion styling support
     `gatsby-plugin-emotion`,

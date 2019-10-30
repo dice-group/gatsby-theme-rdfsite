@@ -1,4 +1,4 @@
-import { Link, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import Image from '../image';
 import Social from '../social';
@@ -29,8 +29,12 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="columns" style={{ flex: 1 }}>
-        <div className="column is-flex">
-          <Image filename="site-icon.png" alt="Site logo" className="dice-nav-logo-footer" />
+        <div className="column">
+          <Image
+            filename="site-icon.png"
+            alt="Site logo"
+            className="dice-nav-logo-footer"
+          />
         </div>
         <div className="column dice-footer">
           {links.map(l => (
@@ -44,7 +48,9 @@ const Footer = () => {
 
       <div className="horizontal-separator" />
 
-      <div className="is-flex horizontally-centered funding-text">{site.siteMetadata.footer}</div>
+      <div className="flex justify-center footer-note">
+        {site.siteMetadata.footer}
+      </div>
     </div>
   );
 };

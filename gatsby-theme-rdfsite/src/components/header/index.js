@@ -1,4 +1,4 @@
-import { Link, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import Image from '../image';
 
@@ -12,6 +12,7 @@ const links = [
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
+
   const {
     site: { siteMetadata: site },
   } = useStaticQuery(
@@ -19,7 +20,7 @@ const Header = () => {
       query {
         site {
           siteMetadata {
-            title
+            siteName
           }
         }
       }
@@ -29,13 +30,13 @@ const Header = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <Link to="/" className="navbar-item no-opacity">
+        <Link to="/" className="navbar-brand-item">
           <Image
             filename="site-icon.png"
             alt="Site logo"
             className="dice-nav-logo"
           />
-          {site.title}
+          <span className="ml-3">{site.siteName}</span>
         </Link>
 
         <a
@@ -52,7 +53,7 @@ const Header = () => {
       </div>
 
       <div
-        id="navbarMenu"
+        id="navbar-menu"
         className={`navbar-menu ${expanded ? 'is-active' : ''}`}>
         <div className="navbar-start">
           {links.map(l => (
@@ -68,8 +69,8 @@ const Header = () => {
         </div>
 
         <div className="navbar-end">
-          <div className="navbar-item no-opacity">
-            <Link to="/contact/" className="button">
+          <div className="navbar-item is-active">
+            <Link to="/contact/" className="contact-button">
               Contact us
             </Link>
           </div>
