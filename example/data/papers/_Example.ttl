@@ -1,14 +1,14 @@
-@prefix kg: <https://dice-research.org/> .
-@prefix kgpapers: <https://dice-research.org/papers/> .
+@prefix dice: <https://dice-research.org/> .
+@prefix dicepapers: <https://dice-research.org/papers/> .
 @prefix schema: <https://schema.dice-research.org/> .
 
-kgpapers:Example a schema:Publication ;
+dicepapers:Example a schema:Publication ;
   schema:type "Publication" ;
   schema:title "Example publication" ;
   schema:tag "MOLE", "dice", "gho", "peer-reviewed", "simba" ;
   schema:publicationType "article" ;
   schema:year "2013" ;
-  schema:author kg:AxelCyrilleNgongaNgomo ;
+  schema:author dice:AxelCyrilleNgongaNgomo ;
   schema:authorName "Axel-Cyrille Ngonga Ngomo" ;
   schema:url <https://aclanthology.info/papers/W18-6521/w18-6521> ;
   schema:pdfUrl <http://www.semantic-web-journal.net/system/files/swj433.pdf> ;

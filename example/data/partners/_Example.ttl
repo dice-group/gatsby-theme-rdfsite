@@ -1,7 +1,7 @@
-@prefix kgpartner: <https://dice-research.org/partner/> .
+@prefix dicepartner: <https://dice-research.org/partner/> .
 @prefix schema: <https://schema.dice-research.org/> .
 
-kgpartner:ExamplePartner a schema:Partner ;
+dicepartner:ExamplePartner a schema:Partner ;
   schema:name "Example company" ;
   schema:country "DE" ;
   schema:url <https://www.partner.com/> ;

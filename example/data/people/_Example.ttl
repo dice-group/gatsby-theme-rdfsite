@@ -1,10 +1,10 @@
-@prefix kg: <https://dice-research.org/> .
+@prefix dice: <https://dice-research.org/> .
 @prefix schema: <https://schema.dice-research.org/> .
 
-kg:ExamplePerson a schema:Person ;
+dice:ExamplePerson a schema:Person ;
   schema:name "Example Person" ;
   schema:namePrefix "Dr." ;
-  schema:role kg:Mentor ;
+  schema:role dice:Mentor ;
   schema:phone <tel:+49-525-16-03342> ;
   schema:email <mailto:example@mail.com> ;
   schema:photo "example_person.jpg" ;
