@@ -11,6 +11,10 @@ module.exports = {
       youtube: '',
       instagram: '',
     },
+    colors: {
+      primary: '',
+      secondary: '',
+    },
   },
   plugins: [{ resolve: `gatsby-theme-rdfsite`, options: {} }],
 };

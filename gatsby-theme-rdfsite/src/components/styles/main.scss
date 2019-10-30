@@ -3,6 +3,12 @@
 // import font from google
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+// expose colors as css variables
+:root {
+  --primary-color: #006bd9;
+  --accent-color: #003162;
+}
+
 // set font
 $family-sans-serif: 'Roboto';
 $family-monospace: 'normal';
@@ -14,8 +20,8 @@ $weight-semibold: 500;
 $weight-bold: 600;
 
 // Set your brand colors
-$blue: #50b4c8;
-$darkblue: #1f454d;
+$blue: #006bd9;
+$darkblue: #003162;
 $darkbrown: #463232;
 $darkbrownOpacity: rgba(70, 50, 50, 0.5);
 $black: #000000;
@@ -23,7 +29,7 @@ $white: #ffffff;
 $whiteTransparent: rgba(255, 255, 255, 0.5);
 
 // adjust navbar styling
-$navbar-background-color: $blue;
+$navbar-background-color: var(--primary-color);
 $navbar-item-color: $white;
 $navbar-item-hover-color: $white;
 $navbar-item-hover-background-color: $whiteTransparent;
@@ -113,6 +119,7 @@ body {
   width: 50px;
   height: 50px;
   margin-right: 5px;
+  filter: brightness(0) invert(1);
 
   path,
   circle {
@@ -124,6 +131,7 @@ body {
   max-height: 100px;
   width: 100px;
   height: 100px;
+  filter: brightness(0) invert(1);
 }
 
 // button tweaking
@@ -332,7 +340,7 @@ body {
 
 // footer customization
 .footer {
-  background-color: $darkblue;
+  background-color: var(--accent-color);
 
   .social {
     position: inherit !important;
@@ -409,7 +417,7 @@ body {
 
   li {
     &.is-active {
-      border-bottom: solid 3px #006bd9;
+      border-bottom: solid 3px var(--primary-color);
     }
   }
 
@@ -433,7 +441,7 @@ body {
     font-weight: 500;
 
     a {
-      color: $blue;
+      color: var(--primary-color);
     }
   }
   .meta {
@@ -442,7 +450,7 @@ body {
 
     .bib-link {
       display: none;
-      color: $blue;
+      color: var(--primary-color);
     }
   }
   &:hover {
@@ -476,11 +484,11 @@ body {
 
   .is-facet {
     color: $white;
-    background-color: $blue;
+    background-color: var(--primary-color);
   }
 
   .is-delete:hover {
-    background-color: $darkblue !important;
+    background-color: var(--accent-color) !important;
     color: $white;
   }
 }
@@ -491,7 +499,7 @@ body {
   }
 
   .icon {
-    color: $blue;
+    color: var(--primary-color);
   }
 
   ul {
@@ -762,7 +770,7 @@ body {
   }
 
   .name {
-    color: $blue;
+    color: var(--primary-color);
     text-align: center;
     margin-top: 10px;
   }
@@ -918,7 +926,7 @@ body {
 // our custom classes
 .content {
   .brand-color {
-    color: $blue;
+    color: var(--primary-color);
   }
 }
 

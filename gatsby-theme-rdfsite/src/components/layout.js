@@ -5,8 +5,9 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
+import { css, Global } from '@emotion/core';
 import { MDXProvider } from '@mdx-js/react';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ExternalLink from '../components/externalLink';
@@ -19,8 +20,37 @@ import Table from './table';
 const mdxComponents = { Image, Link, ExternalLink, Table };
 
 const Layout = ({ children, withContainer = true }) => {
+  const {
+    site: {
+      siteMetadata: { colors },
+    },
+  } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            colors {
+              primary
+              secondary
+            }
+          }
+        }
+      }
+    `
+  );
+
+  console.log({ colors });
+
   return (
     <MDXProvider components={mdxComponents}>
+      <Global
+        styles={css`
+          :root {
+            --primary-color: #000;
+            --accent-color: #999;
+          }
+        `}
+      />
       <Header />
       {withContainer ? (
         <section className="section">

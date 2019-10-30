@@ -46,8 +46,8 @@ module.exports = {
     // sass support
     `gatsby-plugin-sass`,
 
-    // styled-jsx support
-    // `gatsby-plugin-styled-jsx`,
+    // emotion styling support
+    `gatsby-plugin-emotion`,
 
     // default gatsby plugins
     `gatsby-plugin-react-helmet`,
