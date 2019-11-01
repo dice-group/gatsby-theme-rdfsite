@@ -2,6 +2,7 @@ import { graphql, Link, navigate, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import ContactForm from '../components/contact';
+import CustomSection from '../components/customSection';
 import Layout from '../components/layout';
 import News from '../components/news';
 import SEO from '../components/seo';
@@ -64,26 +65,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="hero has-background-light">
-        <div className="hero-body">
-          <div className="container">
-            <div className="section-header">
-              <h1 className="title" ref={customRef}>
-                Custom area
-              </h1>
-              <Link className="link-more" to="/projects/">
-                All projects →
-              </Link>
-            </div>
-
-            <div className="research-areas-list">
-              <div className="research-area-item research-area-rep">Some</div>
-              <div className="research-area-item research-area-cnm">Custom</div>
-              <div className="research-area-item research-area-op">Content</div>
-              <div className="research-area-item research-area-expl">Here</div>
-            </div>
-          </div>
-        </div>
+      <section id="custom" className="hero has-background-light">
+        <CustomSection ref={customRef} />
       </section>
 
       <section id="tweets" className="hero has-background-light">

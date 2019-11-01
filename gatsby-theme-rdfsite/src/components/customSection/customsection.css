@@ -1,0 +1,70 @@
+/*
+ * Research areas arrows
+ */
+
+.research-areas-list {
+  @apply flex flex-wrap;
+
+  .research-area-item {
+    @apply relative inline-flex justify-center items-center text-center;
+
+    width: 210px;
+    height: 140px;
+    margin-left: 30px;
+    margin-top: 20px;
+    padding-left: 30px;
+
+    background-color: #767676;
+    color: white;
+    font-size: 1.1em;
+    font-weight: 500;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 0;
+      border-top: 70px solid transparent;
+      border-left: 30px solid whitesmoke;
+      border-bottom: 70px solid transparent;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 70px solid transparent;
+      border-left: 30px solid #767676;
+      border-bottom: 70px solid transparent;
+      right: -30px;
+    }
+  }
+
+  .research-area-rep {
+    color: #000;
+    background-color: #81e6d9;
+    &::after {
+      border-left-color: #81e6d9;
+    }
+  }
+  .research-area-cnm {
+    background-color: #38b2ac;
+    &::after {
+      border-left-color: #38b2ac;
+    }
+  }
+  .research-area-op {
+    background-color: #2c7a7b;
+    &::after {
+      border-left-color: #2c7a7b;
+    }
+  }
+  .research-area-expl {
+    background-color: #234e52;
+    &::after {
+      border-left-color: #234e52;
+    }
+  }
+}

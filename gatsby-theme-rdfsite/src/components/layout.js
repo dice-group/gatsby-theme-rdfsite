@@ -42,8 +42,6 @@ const Layout = ({ children, withContainer = true }) => {
     `
   );
 
-  console.log({ colors });
-
   return (
     <MDXProvider components={mdxComponents}>
       <Global
