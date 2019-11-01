@@ -1,7 +1,7 @@
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
-import Image from '../image';
 import Social from '../social';
+import Logo from './logo';
 
 const links = [
   { url: '/team/', text: 'Team' },
@@ -30,11 +30,7 @@ const Footer = () => {
     <div className="footer">
       <div className="columns" style={{ flex: 1 }}>
         <div className="column">
-          <Image
-            filename="site-icon.png"
-            alt="Site logo"
-            className="dice-nav-logo-footer"
-          />
+          <Logo />
         </div>
         <div className="column dice-footer">
           {links.map(l => (

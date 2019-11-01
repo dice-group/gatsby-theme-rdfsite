@@ -1,6 +1,6 @@
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
-import Image from '../image';
+import Logo from './logo';
 
 const links = [
   { url: '/', text: 'Home' },
@@ -31,12 +31,7 @@ const Header = () => {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/" className="navbar-brand-item">
-          <Image
-            filename="site-icon.png"
-            alt="Site logo"
-            className="dice-nav-logo"
-          />
-          <span className="ml-3">{site.siteName}</span>
+          <Logo site={site} />
         </Link>
 
         <a
