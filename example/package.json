@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "papers": "papers dice-research simba dice"
   },
   "dependencies": {
     "gatsby": "^2.16.1",

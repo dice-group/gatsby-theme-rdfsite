@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Tim Ermilov <yamalight@gmail.com> (@yamalight)",
   "license": "MIT",
+  "bin": {
+    "papers": "./papers-to-ttl/index.js"
+  },
   "peerDependencies": {
     "gatsby": "^2.6.0"
   },
@@ -24,6 +27,7 @@
     "gatsby-plugin-sharp": "^2.2.32",
     "gatsby-source-filesystem": "^2.1.33",
     "gatsby-transformer-sharp": "^2.3.0",
+    "isomorphic-unfetch": "^3.0.0",
     "n3": "^1.2.1",
     "postcss-nested": "^4.1.2",
     "react-helmet": "^5.2.1",
