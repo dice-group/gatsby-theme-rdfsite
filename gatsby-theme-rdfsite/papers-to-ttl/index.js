@@ -12,9 +12,11 @@ const {
 // get user and tags from cli
 const [, , user, ...tags] = process.argv;
 if (!user || !tags || !tags.length) {
-  console.log(`Please specify user and tags to use! E.g.:
+  console.log(`No user / tags specified! Exiting without doing work.
+
+Specify user and tags as arguments during next run, e.g.:
   > papers userName tag1 tag2 tag3`);
-  return process.exit(1);
+  return process.exit(0);
 }
 
 // construct paths
