@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   plugins: [
     // RDF processing
@@ -50,6 +52,10 @@ module.exports = {
       options: {
         tailwind: true,
         purgeOnly: [`src/styles/main.css`, `src/styles/custom.css`],
+        content: [
+          path.join(__dirname, 'src/**/!(*.d).{ts,js,jsx,tsx}'),
+          path.join(process.cwd(), 'src/**/!(*.d).{ts,js,jsx,tsx}'),
+        ],
       },
     },
 
