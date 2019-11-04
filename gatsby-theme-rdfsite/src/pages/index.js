@@ -24,6 +24,7 @@ export default function Home() {
         site {
           siteMetadata {
             title
+            headline
             description
             social {
               twitter
@@ -53,7 +54,7 @@ export default function Home() {
         <div className="hero-body">
           <div className="container">
             <h1 className="title" ref={heroRef}>
-              Welcome to the Data Science Group
+              {site.headline || `Welcome to ${site.title}`}
             </h1>
             <p className="hero-text">{site.description}</p>
             <button

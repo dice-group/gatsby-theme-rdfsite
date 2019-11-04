@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Example RDF website`,
+    headline: 'Custom welcome line',
     siteName: 'EXAMPLE',
     description: `Example RDF website generated with Gatsby`,
     author: `@yamalight`,
