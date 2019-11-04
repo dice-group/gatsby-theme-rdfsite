@@ -28,7 +28,7 @@ export default function Team({
           .filter(role => role !== 'Project manager')
           .map(role => (
             <div key={role} className="mb-8">
-              <h2 className="mb-1">{role}</h2>
+              <h2 className="mb-1">{role}s</h2>
               <div className="columns">
                 {peopleByRole[role]
                   .sort((a, b) => a.name.localeCompare(b.name))
