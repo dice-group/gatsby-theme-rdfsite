@@ -69,7 +69,7 @@ export default function Home() {
         <CustomSection ref={customRef} />
       </section>
 
-      <section id="tweets" className="hero has-background-light">
+      <section id="tweets" className="hero">
         <div className="hero-body">
           <div className="container">
             <div className="section-header">
@@ -94,7 +94,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="news" className="hero">
+      <section id="news" className="hero has-background-light">
         <div className="hero-body">
           <div className="container">
             <div className="section-header">
@@ -111,7 +111,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="hero has-background-light">
+      <section id="contact" className="hero">
         <div className="hero-body">
           <div className="container contact-section">
             <div className="section-header">
