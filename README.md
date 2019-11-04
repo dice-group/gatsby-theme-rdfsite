@@ -4,58 +4,64 @@
   </a>
 </p>
 <h1 align="center">
-  Starter for creating a Gatsby Theme workspace
+  Gatsby Theme for creating RDF-based websites
 </h1>
 
-```shell
-gatsby new my-theme https://github.com/gatsbyjs/gatsby-starter-theme-workspace
-cd my-theme
-yarn workspace example develop
-```
+For usage instructions see [Gatsby RDFSite template](https://github.com/dice-group/gatsby-template-rdfsite).
 
 ## Layout
 
 ```shell
 .
 ├── README.md
-├── gatsby-theme-minimal
-│   ├── README.md
+├── gatsby-theme-rdfsite
+│   ├── data
+│   ├── papers-to-ttl
+│   ├── plugins/gatsby-transformer-rdf
+│   ├── src
 │   ├── gatsby-config.js
+│   ├── gatsby-node.js
 │   ├── index.js
-│   └── package.json
-├── example
 │   ├── README.md
+│   ├── package.json
+│   └── tailwind.config.js
+├── example
+│   ├── data
+│   ├── images
+│   ├── pages
+│   ├── src/gatsby-theme-rdfsite
 │   ├── gatsby-config.js
 │   ├── package.json
-│   └── src
+│   └── README.md
 ├── package.json
 └── yarn.lock
-
-3 directories, 10 files
 ```
 
-### `gatsby-theme-minimal`
+### `gatsby-theme-rdfsite`
 
-This directory is the theme package itself. You should rename this at
-some point to be `gatsby-theme-{my-theme-name}`. Also change the
-`package.json` name field and the corresponding dependency in the
-example directory's `package.json`/`gatsby-config.js` to match the chosen name.
+This directory is the theme package itself.
 
-- `gatsby-theme-minimal/`
-  - `gatsby-config.js`: An empty gatsby-config that you can use as a starting point for building functionality into your theme.
-  - `index.js`: Since themes also function as plugins, this is an empty file that
-    gatsby needs to use this theme as a plugin.
-  - `package.json`: The dependencies that your theme will pull in when people install it. `gatsby` should be a `peerDependency`.
+- `gatsby-theme-rdfsite/`
+  - `data`: RDF folder with base classes and basic RDF structure used across all the generated websites.
+  - `papers-to-ttl`: papers generation utility that queries Bibsonomy API and generates RDF with papers from it.
+  - `plugins/gatsby-transformer-rdf`: Gatsby plugin that transforms RDF into GraphQL entries for Gatsby to consume.
+  - `src`: source code with all the basic pages, components and templates used on the website.
+  - `gatsby-config.js`: basic gatsby-config that includes all the required setup for RDF-based websites.
+  - `gatsby-node.js`: basic gatsby-node config that includes page generation from RDF and Markdown resources.
+  - `index.js`: since themes also function as plugins, this is an empty file that gatsby needs to use this theme as a plugin.
+  - `package.json`: the dependencies that your theme will pull in when people install it. `gatsby` should be a `peerDependency`.
+  - `tailwind.config.js`: basic Tailwind.css config for theme postcss build.
 
 ### `example`
 
-This is an example usage of your theme. It should look the same as the
-site of someone who installed and used your theme from npm.
+This is an example usage of the theme.
 
 - `example/`
-  - `gatsby-config.js`: Specifies which theme to use and any other one-off config a site might need.
-  - `src/`: Source code such as one-off pages or components that might live in
-    a user's site.
+  - `data`: RDF folder with website RDF data.
+  - `images`: images folder with all the images that are used on the website.
+  - `pages`: pages folder with all the markdown (MD or MDX) pages used on the website.
+  - `src/gatsby-theme-rdfsite`: custom overrides folder for theme components.
+  - `gatsby-config.js`: Specifies which theme to use as well as website metadata, colors, etc.
 
 You can run the example with:
 
