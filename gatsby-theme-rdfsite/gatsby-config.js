@@ -1,4 +1,5 @@
 const path = require('path');
+const tailwindcss = require(`tailwindcss`);
 
 module.exports = {
   plugins: [
@@ -46,7 +47,19 @@ module.exports = {
     },
 
     // postcss support
-    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          tailwindcss(path.join(__dirname, '/tailwind.config.js')),
+          require(`postcss-nested`),
+          require(`autoprefixer`),
+          require(`cssnano`)({
+            preset: `default`,
+          }),
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
