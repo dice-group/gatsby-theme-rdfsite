@@ -15,6 +15,7 @@ import '../styles/custom.css';
 import '../styles/main.css';
 import Footer from './footer';
 import Header from './header';
+import './i18n';
 import Image from './image';
 import Table from './table';
 

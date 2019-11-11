@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const goBack = e => {
   e.preventDefault();
@@ -6,9 +7,13 @@ const goBack = e => {
 };
 
 export default function BackButton() {
+  const { t } = useTranslation();
+
+  console.log(t('Go back'));
+
   return (
     <a href="#" onClick={goBack}>
-      ← Go back
+      ← {t('Go back')}
     </a>
   );
 }

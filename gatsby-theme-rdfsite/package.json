@@ -7,6 +7,9 @@
   "bin": {
     "papers": "./papers-to-ttl/index.js"
   },
+  "scripts": {
+    "extract": "i18next -c i18next-parser.config.js"
+  },
   "peerDependencies": {
     "gatsby": "^2.6.0"
   },
@@ -27,12 +30,18 @@
     "gatsby-plugin-sharp": "^2.2.32",
     "gatsby-source-filesystem": "^2.1.33",
     "gatsby-transformer-sharp": "^2.3.0",
+    "i18next": "^19.0.0",
+    "i18next-browser-languagedetector": "^4.0.1",
     "isomorphic-unfetch": "^3.0.0",
     "n3": "^1.2.1",
     "postcss-nested": "^4.1.2",
     "react-helmet": "^5.2.1",
+    "react-i18next": "^11.1.0",
     "react-icons": "^3.7.0",
     "react-twitter-embed": "^2.0.8",
     "tailwindcss": "^1.1.3"
+  },
+  "devDependencies": {
+    "i18next-parser": "^1.0.0-beta36"
   }
 }
