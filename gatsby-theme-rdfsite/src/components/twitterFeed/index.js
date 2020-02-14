@@ -3,7 +3,10 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 const injectTwitterStyle = () => {
   // get timeline by ID
-  const timeline = document.getElementById('twitter-widget-0');
+  const timeline = document.getElementsByClassName('twitter-timeline')[0];
+  if (!timeline) {
+    return;
+  }
   // set height to auto
   timeline.style.height = 'auto';
   // create new style element
