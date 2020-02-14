@@ -4,17 +4,18 @@ import Logo from './logo';
 
 const links = [
   { url: '/', text: 'Home' },
+  { url: '/news/', text: 'News' },
   { url: '/team/', text: 'Team' },
   { url: '/partners/', text: 'Partners' },
   { url: '/publications/', text: 'Publications' },
-  { url: '/deliverables/', text: 'Deliverables' },
+  { url: '/deliverables/', text: 'Deliverables' }
 ];
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
 
   const {
-    site: { siteMetadata: site },
+    site: { siteMetadata: site }
   } = useStaticQuery(
     graphql`
       query {
@@ -40,7 +41,8 @@ const Header = () => {
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarMenu"
-          onClick={() => setExpanded(!expanded)}>
+          onClick={() => setExpanded(!expanded)}
+        >
           <span aria-hidden="true" />
           <span aria-hidden="true" />
           <span aria-hidden="true" />
@@ -49,7 +51,8 @@ const Header = () => {
 
       <div
         id="navbar-menu"
-        className={`navbar-menu ${expanded ? 'is-active' : ''}`}>
+        className={`navbar-menu ${expanded ? 'is-active' : ''}`}
+      >
         <div className="navbar-start">
           {links.map(l => (
             <Link
@@ -57,7 +60,8 @@ const Header = () => {
               to={l.url}
               className="navbar-item"
               activeClassName="is-active"
-              partiallyActive={l.url !== '/'}>
+              partiallyActive={l.url !== '/'}
+            >
               {l.text}
             </Link>
           ))}
