@@ -30,11 +30,11 @@ const News = ({ limit = 10, paginate = true }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pages, setPages] = useState([]);
   const {
-    allMdx: { edges },
+    allMdx: { edges }
   } = useStaticQuery(newsQuery);
 
   useEffect(() => {
-    const newPagesCount = Math.floor(edges.length / limit);
+    const newPagesCount = Math.ceil(edges.length / limit);
     const newPages = [];
     for (let i = 0; i < newPagesCount; i++) {
       newPages.push(i);
@@ -53,7 +53,8 @@ const News = ({ limit = 10, paginate = true }) => {
                   className={`pagination-link ${page === currentPage &&
                     'is-current'}`}
                   aria-label="Goto page 1"
-                  onClick={() => setCurrentPage(page)}>
+                  onClick={() => setCurrentPage(page)}
+                >
                   {page + 1}
                 </a>
               </li>
