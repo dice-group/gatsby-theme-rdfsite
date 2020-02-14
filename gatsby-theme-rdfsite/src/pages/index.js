@@ -1,6 +1,5 @@
 import { graphql, Link, navigate, useStaticQuery } from 'gatsby';
 import React from 'react';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import ContactForm from '../components/contact';
 import CustomSection from '../components/customSection';
 import Layout from '../components/layout';
@@ -8,6 +7,7 @@ import News from '../components/news';
 import SEO from '../components/seo';
 import SideMenu from '../components/sidemenu';
 import Social from '../components/social';
+import TwitterFeed from '../components/twitterFeed';
 
 export default function Home() {
   const heroRef = React.createRef();
@@ -17,7 +17,7 @@ export default function Home() {
   const contactRef = React.createRef();
 
   const {
-    site: { siteMetadata: site },
+    site: { siteMetadata: site }
   } = useStaticQuery(
     graphql`
       query {
@@ -40,7 +40,7 @@ export default function Home() {
     { target: customRef, title: 'Custom area', url: 'custom' },
     { target: tweetsRef, title: 'Latest tweets', url: 'tweets' },
     { target: newsRef, title: 'News', url: 'news' },
-    { target: contactRef, title: 'Contact us', url: 'contact' },
+    { target: contactRef, title: 'Contact us', url: 'contact' }
   ];
 
   return (
@@ -59,7 +59,8 @@ export default function Home() {
             <p className="hero-text">{site.description}</p>
             <button
               onClick={() => navigate('/news/')}
-              className="action-button">
+              className="action-button"
+            >
               Learn more
             </button>
           </div>
@@ -82,15 +83,7 @@ export default function Home() {
               </a>
             </div>
 
-            <TwitterTimelineEmbed
-              sourceType="profile"
-              screenName={site.social.twitter.split('/').pop()}
-              noFooter
-              noHeader
-              noScrollbar
-              autoHeight
-              options={{ tweetLimit: 3, dnt: true }}
-            />
+            <TwitterFeed screenName={site.social.twitter.split('/').pop()} />
           </div>
         </div>
       </section>
