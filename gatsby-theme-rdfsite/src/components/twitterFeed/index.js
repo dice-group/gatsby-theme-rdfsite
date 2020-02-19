@@ -2,7 +2,7 @@ import React from 'react';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 const injectTwitterStyle = () => {
-  // get timeline by ID
+  // get timeline by class
   const timeline = document.getElementsByClassName('twitter-timeline')[0];
   if (!timeline) {
     return;
