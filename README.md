@@ -73,6 +73,5 @@ yarn workspace example develop
 
 1. Make changes to the code as needed
 2. Make sure you've updated the version for `gatsby-theme-rdfsite` (edit `package.json` manually, or use `yarn workspace gatsby-theme-rdfsite version`)
-3. Merge changes to `master` branch via PR
-4. Create & publish new github release
-5. Wait for Github Actions to finish release process
+3. Create & publish new release using Github
+4. Wait for Github Actions to finish release process
