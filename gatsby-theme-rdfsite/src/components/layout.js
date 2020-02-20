@@ -7,6 +7,7 @@
 
 import { css, Global } from '@emotion/core';
 import { MDXProvider } from '@mdx-js/react';
+import { MdxEmbedProvider } from '@pauliescanlon/gatsby-mdx-embed';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -23,8 +24,8 @@ const mdxComponents = { Image, Link, ExternalLink, Table };
 const Layout = ({ children, withContainer = true }) => {
   const {
     site: {
-      siteMetadata: { colors },
-    },
+      siteMetadata: { colors }
+    }
   } = useStaticQuery(
     graphql`
       query {
@@ -43,32 +44,34 @@ const Layout = ({ children, withContainer = true }) => {
   );
 
   return (
-    <MDXProvider components={mdxComponents}>
-      <Global
-        styles={css`
-          :root {
-            --primary-color: ${colors.primary};
-            --accent-color: ${colors.accent};
-            --bright-text-color: ${colors.brightText};
-            --dark-text-color: ${colors.darkText};
-          }
-        `}
-      />
-      <Header />
-      {withContainer ? (
-        <section className="section">
-          <div className="container">{children}</div>
-        </section>
-      ) : (
-        <>{children}</>
-      )}
-      <Footer />
-    </MDXProvider>
+    <MdxEmbedProvider>
+      <MDXProvider components={mdxComponents}>
+        <Global
+          styles={css`
+            :root {
+              --primary-color: ${colors.primary};
+              --accent-color: ${colors.accent};
+              --bright-text-color: ${colors.brightText};
+              --dark-text-color: ${colors.darkText};
+            }
+          `}
+        />
+        <Header />
+        {withContainer ? (
+          <section className="section">
+            <div className="container">{children}</div>
+          </section>
+        ) : (
+          <>{children}</>
+        )}
+        <Footer />
+      </MDXProvider>
+    </MdxEmbedProvider>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Layout;
