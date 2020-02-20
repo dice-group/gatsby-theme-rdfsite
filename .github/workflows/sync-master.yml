@@ -20,7 +20,7 @@ jobs:
       - name: build
         run: yarn workspace example build
   syncBranches:
-    needs: deploy
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
