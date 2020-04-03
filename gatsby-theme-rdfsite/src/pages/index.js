@@ -50,6 +50,7 @@ export default function Home() {
       <SideMenu targets={menu} style={{ margin: 'auto' }} />
       <Social style={{ maxWidth: 40, margin: 'auto' }} />
 
+      {site.description && site.description.length > 0 && (
       <section id="about" className="hero">
         <div className="hero-body">
           <div className="container">
@@ -65,7 +66,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </section>
+      </section>)}
 
       <section id="custom" className="hero has-background-light">
         <CustomSection ref={customRef} />
