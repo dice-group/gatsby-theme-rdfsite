@@ -35,13 +35,16 @@ export default function Home() {
     `
   );
 
-  const menu = [
-    { target: heroRef, title: 'About', url: 'about' },
+  let menu = [
     { target: customRef, title: 'Custom area', url: 'custom' },
     { target: tweetsRef, title: 'Latest tweets', url: 'tweets' },
     { target: newsRef, title: 'News', url: 'news' },
     { target: contactRef, title: 'Contact us', url: 'contact' }
   ];
+
+  if (site.description && site.description.length > 0) {
+    menu = [{ target: heroRef, title: 'About', url: 'about' }, ...menu];
+  }
 
   return (
     <Layout withContainer={false}>
