@@ -61,7 +61,7 @@ export default function Home() {
               <h1 className="title" ref={heroRef}>
                 {site.headline || `Welcome to ${site.title}`}
               </h1>
-              <p className="hero-text">{descriptionMarkdown}</p>
+              <p className="hero-text">{site.description}</p>
               <button
                 onClick={() => navigate('/news/')}
                 className="action-button"
