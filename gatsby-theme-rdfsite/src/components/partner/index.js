@@ -13,7 +13,7 @@ const Partner = ({ partner, renderType = true }) => {
         />
       </div>
       <a
-        className="name"
+        className="name long-word"
         href={partner.data.url}
         target="_blank"
         rel="noopener noreferrer"

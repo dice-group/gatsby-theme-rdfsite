@@ -6,8 +6,8 @@ const WrapLink = ({ person, children }) =>
   person.link && person.link.length > 0 ? (
     <a href={person.link}>{children}</a>
   ) : (
-    <Link to={person.path}>{children}</Link>
-  );
+      <Link to={person.path}>{children}</Link>
+    );
 
 export const Person = ({ person }) => (
   <WrapLink person={person}>
@@ -19,7 +19,7 @@ export const Person = ({ person }) => (
           style={{ width: 160 }}
         />
       </div>
-      <span className="link">
+      <span className="link long-word">
         {person.namePrefix} {person.name}
       </span>
     </div>
@@ -31,9 +31,9 @@ export const rdfToPerson = ({ data, path }) => ({
   path: path,
   projects: data.projects
     ? data.project.map(p => ({
-        name: p.data.name,
-        path: p.path,
-      }))
+      name: p.data.name,
+      path: p.path,
+    }))
     : [],
   role: data.role ? data.role.data : {},
 });

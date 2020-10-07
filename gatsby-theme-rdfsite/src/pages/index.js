@@ -36,13 +36,16 @@ export default function Home() {
     `
   );
 
-  const menu = [
-    { target: heroRef, title: "About", url: "about" },
-    { target: customRef, title: "Custom area", url: "custom" },
-    { target: tweetsRef, title: "Latest tweets", url: "tweets" },
-    { target: newsRef, title: "News", url: "news" },
-    { target: contactRef, title: "Contact us", url: "contact" }
+  let menu = [
+    { target: customRef, title: 'Custom area', url: 'custom' },
+    { target: tweetsRef, title: 'Latest tweets', url: 'tweets' },
+    { target: newsRef, title: 'News', url: 'news' },
+    { target: contactRef, title: 'Contact us', url: 'contact' }
   ];
+
+  if (site.description && site.description.length > 0) {
+    menu = [{ target: heroRef, title: 'About', url: 'about' }, ...menu];
+  }
 
   return (
     <Layout withContainer={false}>
@@ -51,22 +54,23 @@ export default function Home() {
       <SideMenu targets={menu} style={{ margin: "auto" }} />
       <Social style={{ maxWidth: 40, margin: "auto" }} />
 
-      <section id="about" className="hero">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title" ref={heroRef}>
-              {site.headline || `Welcome to ${site.title}`}
-            </h1>
-            <p className="hero-text">{descriptionMarkdown}</p>
-            <button
-              onClick={() => navigate("/news/")}
-              className="action-button"
-            >
-              Learn more
+      {site.description && site.description.length > 0 && (
+        <section id="about" className="hero">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title" ref={heroRef}>
+                {site.headline || `Welcome to ${site.title}`}
+              </h1>
+              <p className="hero-text">{descriptionMarkdown}</p>
+              <button
+                onClick={() => navigate("/news/")}
+                className="action-button"
+              >
+                Learn more
             </button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>)}
 
       <section id="custom" className="hero has-background-light">
         <CustomSection ref={customRef} />
