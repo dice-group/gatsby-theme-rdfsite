@@ -1,5 +1,5 @@
 /* Import Roboto font */
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 /* Import tailwind */
 @tailwind base;
@@ -67,7 +67,7 @@ body {
       &::before {
         margin-left: -32px;
         margin-right: 10px;
-        content: counter(list-counter) '. ';
+        content: counter(list-counter) ". ";
         color: rgba(0, 0, 0, 0.5);
 
         @screen md {
@@ -289,7 +289,7 @@ body {
  */
 
 #about {
-  background-image: url('/background.svg');
+  background-image: url("/background.svg");
   background-position: bottom;
   background-repeat: repeat-x;
 }
@@ -771,7 +771,7 @@ a {
     .delete-icon::before {
       @apply absolute block bg-white text-white cursor-pointer;
 
-      content: '';
+      content: "";
       height: 1px;
       left: 16px;
       top: 16px;
@@ -782,7 +782,7 @@ a {
     .delete-icon::after {
       @apply absolute block bg-white text-white cursor-pointer;
 
-      content: '';
+      content: "";
       height: 16px;
       left: 16px;
       top: 16px;
@@ -840,11 +840,11 @@ a {
 
   .awardee {
     &:after {
-      content: ', ';
+      content: ", ";
     }
 
     &:last-child::after {
-      content: '';
+      content: "";
     }
   }
 }
@@ -999,6 +999,10 @@ a {
   .link {
     @apply mt-2 text-center;
   }
+}
+
+.long-word {
+  word-break: normal;
 }
 
 .person-page {
