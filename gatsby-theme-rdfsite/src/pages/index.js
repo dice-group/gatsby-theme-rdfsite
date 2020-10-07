@@ -1,13 +1,13 @@
-import { graphql, Link, navigate, useStaticQuery } from "gatsby";
-import React from "react";
-import ContactForm from "../components/contact";
-import CustomSection from "../components/customSection";
-import Layout from "../components/layout";
-import News from "../components/news";
-import SEO from "../components/seo";
-import SideMenu from "../components/sidemenu";
-import Social from "../components/social";
-import TwitterFeed from "../components/twitterFeed";
+import { graphql, Link, navigate, useStaticQuery } from 'gatsby';
+import React from 'react';
+import ContactForm from '../components/contact';
+import CustomSection from '../components/customSection';
+import Layout from '../components/layout';
+import News from '../components/news';
+import SEO from '../components/seo';
+import SideMenu from '../components/sidemenu';
+import Social from '../components/social';
+import TwitterFeed from '../components/twitterFeed';
 
 export default function Home() {
   const heroRef = React.createRef();
@@ -15,7 +15,6 @@ export default function Home() {
   const newsRef = React.createRef();
   const tweetsRef = React.createRef();
   const contactRef = React.createRef();
-  const descriptionMarkdown = React.createRef();
 
   const {
     site: { siteMetadata: site }
@@ -37,6 +36,7 @@ export default function Home() {
   );
 
   let menu = [
+    { target: heroRef, title: 'About', url: 'about' },
     { target: customRef, title: 'Custom area', url: 'custom' },
     { target: tweetsRef, title: 'Latest tweets', url: 'tweets' },
     { target: newsRef, title: 'News', url: 'news' },
@@ -51,8 +51,8 @@ export default function Home() {
     <Layout withContainer={false}>
       <SEO title="Home" />
 
-      <SideMenu targets={menu} style={{ margin: "auto" }} />
-      <Social style={{ maxWidth: 40, margin: "auto" }} />
+      <SideMenu targets={menu} style={{ margin: 'auto' }} />
+      <Social style={{ maxWidth: 40, margin: 'auto' }} />
 
       {site.description && site.description.length > 0 && (
         <section id="about" className="hero">
@@ -63,7 +63,7 @@ export default function Home() {
               </h1>
               <p className="hero-text">{descriptionMarkdown}</p>
               <button
-                onClick={() => navigate("/news/")}
+                onClick={() => navigate('/news/')}
                 className="action-button"
               >
                 Learn more
@@ -88,7 +88,7 @@ export default function Home() {
               </a>
             </div>
 
-            <TwitterFeed screenName={site.social.twitter.split("/").pop()} />
+            <TwitterFeed screenName={site.social.twitter.split('/').pop()} />
           </div>
         </div>
       </section>
