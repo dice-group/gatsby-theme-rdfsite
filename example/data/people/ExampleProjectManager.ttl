@@ -1,14 +1,14 @@
 @prefix dice: <https://dice-research.org/> .
 @prefix schema: <https://schema.dice-research.org/> .
 
-dice:ExamplePerson a schema:Person ;
-  schema:name "Example Person" ;
-  schema:namePrefix "Dr." ;
+dice:ExamplePerson2 a schema:Person ;
+  schema:name "Example Project Manager" ;
+  schema:namePrefix "" ;
+  schema:contact dice:AdditionalContact ;
   schema:role dice:Mentor ;
-  schema:phone <tel:+49-525-16-03342> ;
-  schema:email <mailto:example@mail.com> ;
-  schema:photo "example_person.jpg" ;
-  schema:link "https://person.org/external/link";
+  schema:phone <tel:+49-123-987654> ;
+  schema:email <mailto:project@example.org> ;
+  schema:photo "jochimsen.jpg" ;
   schema:content """
 # Content from RDF
 
@@ -20,3 +20,4 @@ This is a test person that has all properties.
 
 This is a test markdown that can include anything.
   """ .
+
