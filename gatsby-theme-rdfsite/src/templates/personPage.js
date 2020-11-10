@@ -10,7 +10,7 @@ import SEO from '../components/seo';
 
 export default function PersonTemplate({ data: { rdf, allRdf } }) {
   const {
-    data: { name, namePrefix, role, phone, email, photo },
+    data: { content, name, namePrefix, role, phone, email, photo },
   } = rdf;
   const { edges } = allRdf;
 
@@ -54,6 +54,14 @@ export default function PersonTemplate({ data: { rdf, allRdf } }) {
             )}
           </div>
         </div>
+        {content && (
+          <div className="person-content">
+            {content.map((mdString, i) => (
+              <ReactMarkdown key={`content_${i}`} source={mdString} />
+            ))}
+          </div>
+        )}
+
 
         {edges && edges.length > 0 && (
           <>
