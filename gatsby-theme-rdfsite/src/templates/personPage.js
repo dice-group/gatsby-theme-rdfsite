@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
+import ReactMarkdown from '../components/markdown';
 import BackButton from '../components/backButton';
 import Image from '../components/image';
 import Layout from '../components/layout';
