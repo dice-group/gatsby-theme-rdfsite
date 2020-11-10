@@ -8,4 +8,15 @@ dice:ExamplePerson a schema:Person ;
   schema:phone <tel:+49-525-16-03342> ;
   schema:email <mailto:example@mail.com> ;
   schema:photo "example_person.jpg" ;
-  schema:link "https://person.org/external/link" .
+  schema:link "https://person.org/external/link";
+  schema:content """
+# Content from RDF
+
+## Stuff
+
+This is a test person that has all properties.
+
+## Test
+
+This is a test markdown that can include anything.
+  """ .
