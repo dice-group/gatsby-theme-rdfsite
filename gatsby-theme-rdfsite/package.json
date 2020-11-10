@@ -28,6 +28,7 @@
     "gatsby-plugin-sharp": "^2.2.32",
     "gatsby-source-filesystem": "^2.1.33",
     "gatsby-transformer-sharp": "^2.3.0",
+    "html-to-react": "^1.4.2",
     "isomorphic-unfetch": "^3.0.0",
     "n3": "^1.2.1",
     "postcss-nested": "^4.1.2",
