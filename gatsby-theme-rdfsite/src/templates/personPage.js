@@ -84,6 +84,7 @@ export const pageQuery = graphql`
   query($path: String!) {
     rdf(path: { eq: $path }) {
       data {
+        content
         name
         namePrefix
         phone
