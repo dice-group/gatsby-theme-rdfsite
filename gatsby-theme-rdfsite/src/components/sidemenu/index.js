@@ -26,8 +26,8 @@ const SideMenu = ({ targets }) => {
         rootMargin: '0px',
       }
     );
-
-    targets.forEach(({ target: { current } }) => observer.observe(current));
+    // Filter in case target elements have no headline
+    targets.filter((obj) => obj.target.current !== null).forEach(({ target: { current } }) => observer.observe(current));
 
     return () => observer.disconnect();
   }, targets);

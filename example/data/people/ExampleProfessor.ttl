@@ -1,0 +1,12 @@
+@prefix dice: <https://dice-research.org/> .
+@prefix schema: <https://schema.dice-research.org/> .
+
+dice:ExamplePerson1 a schema:Person ;
+  schema:name "Example Professor" ;
+  schema:namePrefix "Prof. Dr." ;
+  schema:contact dice:MainContact ;
+  schema:role dice:Mentor ;
+  schema:phone <tel:+49-123-456789> ;
+  schema:email <mailto:professor@example.org> ;
+  schema:photo "ngonga.jpg" ;
+  schema:link "https://example.org/professor" .

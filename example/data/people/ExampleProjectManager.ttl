@@ -1,0 +1,23 @@
+@prefix dice: <https://dice-research.org/> .
+@prefix schema: <https://schema.dice-research.org/> .
+
+dice:ExamplePerson2 a schema:Person ;
+  schema:name "Example Project Manager" ;
+  schema:namePrefix "" ;
+  schema:contact dice:AdditionalContact ;
+  schema:role dice:Mentor ;
+  schema:phone <tel:+49-123-987654> ;
+  schema:email <mailto:project@example.org> ;
+  schema:photo "jochimsen.jpg" ;
+  schema:content """
+# Content from RDF
+
+## Stuff
+
+This is a test person that has all properties.
+
+## Test
+
+This is a test markdown that can include anything.
+  """ .
+
