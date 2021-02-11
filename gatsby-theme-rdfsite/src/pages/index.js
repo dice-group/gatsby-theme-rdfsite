@@ -17,7 +17,7 @@ export default function Home() {
   const contactRef = React.createRef();
 
   const {
-    site: { siteMetadata: site }
+    site: { siteMetadata: site },
   } = useStaticQuery(
     graphql`
       query {
@@ -36,11 +36,10 @@ export default function Home() {
   );
 
   let menu = [
-    { target: heroRef, title: 'About', url: 'about' },
     { target: customRef, title: 'Custom area', url: 'custom' },
     { target: tweetsRef, title: 'Latest tweets', url: 'tweets' },
     { target: newsRef, title: 'News', url: 'news' },
-    { target: contactRef, title: 'Contact us', url: 'contact' }
+    { target: contactRef, title: 'Contact us', url: 'contact' },
   ];
 
   if (site.description && site.description.length > 0) {
@@ -67,10 +66,11 @@ export default function Home() {
                 className="action-button"
               >
                 Learn more
-            </button>
+              </button>
             </div>
           </div>
-        </section>)}
+        </section>
+      )}
 
       <section id="custom" className="hero has-background-light">
         <CustomSection ref={customRef} />
