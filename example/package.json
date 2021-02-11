@@ -7,7 +7,8 @@
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "papers": "papers dice-research simba dice"
+    "papers": "papers dice-research simba dice",
+    "papers-config": "papers --config=papers.json"
   },
   "dependencies": {
     "gatsby": "^2.16.1",

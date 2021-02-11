@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const arg = require('arg');
 const _ = require('lodash');
 const fetch = require('isomorphic-unfetch');
 const {
@@ -10,13 +11,56 @@ const {
 } = require('n3');
 
 // get user and tags from cli
-const [, , user, ...tags] = process.argv;
-if (!user || !tags || !tags.length) {
-  console.log(`No user / tags specified! Exiting without doing work.
+const args = arg({ '--config': String });
+const [user, ...tags] = args._;
+const configFile = args['--config'];
+if ((!user || !tags || !tags.length) && !configFile) {
+  console.log(`No user / tags or config specified! Exiting without doing work.
 
-Specify user and tags as arguments during next run, e.g.:
-  > papers userName tag1 tag2 tag3`);
+Either specify user and tags as arguments during next run, e.g.:
+  > papers userName tag1 tag2 tag3
+  
+Or provide a config, e.g.:
+  > papers --config=papers.json
+
+Config should contain array of users and tags, e.g.:
+  [{
+    username: "my-bib-username",
+    tags: ["tag1", "tag2"]
+  }]
+`);
   return process.exit(0);
+}
+
+// warn if both user and config are given
+if (configFile && user) {
+  console.log(
+    `WARNING! Config file provided along with user and tags list.
+  User and tags list WILL BE IGNORED.
+  Using config file...`
+  );
+}
+
+// create new config
+let config = [];
+
+// load config from file if given
+if (configFile) {
+  const configPath = path.join(process.cwd(), configFile);
+  if (!fs.existsSync(configPath)) {
+    console.log('ERROR! Given config file does not exist!');
+    process.exit(1);
+  }
+  // require JSON config file
+  config = require(configPath);
+} else {
+  // if config was not given - create new one from input
+  config = [
+    {
+      username: user,
+      tags,
+    },
+  ];
 }
 
 // construct paths
@@ -78,44 +122,49 @@ const createLiteralWriter = (writer, paperUrl) => (predicate, obj) => {
 
 // main work function
 const main = async () => {
-  // construct base url from user input
-  const baseUrl = `https://www.bibsonomy.org/json/user/${user}/`;
-
   // create papers storage array
   const papers = [];
 
-  // iterate over tags and fill papers array
-  for (const tag of tags) {
-    const url = `${baseUrl}${tag}?items=1000`;
-    const { items } = await fetch(url).then(async r => {
-      if (r.status !== 200) {
-        console.log(
-          `Could not load papers! Status: ${r.status} ${r.statusText}`
-        );
-        return process.exit(1);
-      }
-      return r.json();
-    });
-    items.forEach(paper => {
-      // ignore papers that are already added
-      if (papers.find(p => p.id === paper.id)) {
-        return;
-      }
+  // iterate over each user and fill papers array
+  for (const configEntry of config) {
+    // construct base url from config username
+    const baseUrl = `https://www.bibsonomy.org/json/user/${configEntry.username}/`;
 
-      papers.push(paper);
-    });
+    // iterate over tags and fill papers array
+    for (const tag of configEntry.tags) {
+      const url = `${baseUrl}${tag}?items=1000`;
+      const { items } = await fetch(url).then(async (r) => {
+        if (r.status !== 200) {
+          console.log(
+            `Could not load papers! Status: ${r.status} ${r.statusText}`
+          );
+          return process.exit(1);
+        }
+        return r.json();
+      });
+      items.forEach((paper) => {
+        // ignore papers that are already added
+        if (papers.find((p) => p.id === paper.id)) {
+          return;
+        }
+
+        papers.push(paper);
+      });
+    }
   }
 
   console.log(`Fetched ${papers.length} papers, processing...`);
 
-  papers.forEach(paper => {
+  papers.forEach((paper) => {
     // create new turtle writer for paper
     const writer = new Writer(writerConfig);
 
     // generate a basename for file and URL
     const baseName = _.upperFirst(_.camelCase(paper.label));
     const baseFileName = paper.id.replace(
-      /https:\/\/www.bibsonomy.org\/bibtex\/(.+?)\/(.+)/,
+      paper.id.includes('/bibtex/')
+        ? /https:\/\/www.bibsonomy.org\/bibtex\/(.+?)\/(.+)/
+        : /https:\/\/www.bibsonomy.org\/url\/(.+?)\/(.+)/,
       '$1_$2'
     );
 
@@ -138,7 +187,7 @@ const main = async () => {
       writeLiteral('source', paper.booktitle || paper.journal);
     }
     if (paper.tags && paper.tags.length > 0) {
-      paper.tags.forEach(tag => {
+      paper.tags.forEach((tag) => {
         writeLiteral('tag', tag);
       });
     }
@@ -147,7 +196,7 @@ const main = async () => {
     writeUrl(`${prefixes.schema}pdfUrl`, paper['bdsk-url-1'] || paper['1']);
     if (paper.authors && paper.authors.length > 0) {
       // write URLs that link to our website
-      paper.authors.forEach(author => {
+      paper.authors.forEach((author) => {
         const name = _.upperFirst(_.camelCase(author.first + author.last));
         writeUrl(`${prefixes.schema}author`, `${prefixes.dice}${name}`);
       });
@@ -165,7 +214,7 @@ const main = async () => {
       const filename = `${baseFileName}.ttl`;
       const filepath = path.join(folder, filename);
       // write result
-      fs.writeFile(filepath, result, err => {
+      fs.writeFile(filepath, result, (err) => {
         if (err) {
           throw err;
         }

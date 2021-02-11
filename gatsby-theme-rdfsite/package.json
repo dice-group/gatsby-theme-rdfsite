@@ -16,6 +16,7 @@
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
     "@pauliescanlon/gatsby-mdx-embed": "^0.0.17",
+    "arg": "^5.0.0",
     "cssnano": "^4.1.10",
     "gatsby-image": "^2.2.29",
     "gatsby-plugin-emotion": "^4.1.12",
