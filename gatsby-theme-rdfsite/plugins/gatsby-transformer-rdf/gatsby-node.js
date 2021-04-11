@@ -1,4 +1,5 @@
-const { Parser } = require('n3');
+const { Parser, Writer } = require('n3');
+const jsonld = require('jsonld');
 
 const basePath = 'https://dice-research.org/';
 
@@ -23,7 +24,7 @@ const defaultPrefixes = {
   rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
 };
 
-const processResult = ({ result, resultSubject, prefixes: filePrefixes }) => {
+const processResult = ({ result, resultSubject, prefixes: filePrefixes, jsonldData }) => {
   const prefixes = { ...defaultPrefixes, ...filePrefixes };
   const urls = Object.keys(prefixes).map(p => ({
     url: prefixes[p],
@@ -78,6 +79,9 @@ const processResult = ({ result, resultSubject, prefixes: filePrefixes }) => {
     }
   });
 
+  // append JSON-LD as string
+  data.jsonld = JSON.stringify(jsonldData);
+
   const resultObject = {
     data,
     prefixes,
@@ -121,16 +125,47 @@ async function onCreateNode({
   let resultSubject;
 
   const parser = new Parser();
-  parser.parse(content, (error, quad, prefixes) => {
+  // create writer to convert content to JSON-LD
+  const writer = new Writer({ format: 'application/n-quads' });
+  const getWriterContent = () =>
+    new Promise((resolve, reject) => {
+      writer.end((err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(result);
+      });
+    });
+  // parse content loaded from file
+  parser.parse(content, async (error, quad, prefixes) => {
+    // if we errored out show message in console
+    // and re-throw error to interrupt build
     if (error) {
       console.error(`Error parsing ${node.relativePath}!`, error);
       throw error;
     }
     if (!quad && prefixes) {
-      const resultObject = processResult({ result, resultSubject, prefixes });
+      const nquads = await getWriterContent();
+      const jld = await jsonld.fromRDF(nquads, {
+        format: 'application/n-quads',
+      });
+
+      // process the results
+      const resultObject = processResult({
+        result,
+        resultSubject,
+        prefixes,
+        jsonldData: jld,
+      });
+      // write to gatsby
       transformObject(resultObject, resultSubject, 'RDF');
       return;
     }
+
+    // write quad to writer
+    writer.addQuad(quad);
+
+    // split quad into subject, predicate, object
     const {
       subject: { id: subject },
       predicate: { id: predicate },
