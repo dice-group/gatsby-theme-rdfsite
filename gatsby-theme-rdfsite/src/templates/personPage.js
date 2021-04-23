@@ -11,13 +11,13 @@ import SEO from '../components/seo';
 
 export default function PersonTemplate({ data: { rdf, allRdf } }) {
   const {
-    data: { content, name, namePrefix, role, phone, email, photo },
+    data: { content, name, namePrefix, role, phone, email, photo, jsonld },
   } = rdf;
   const { edges } = allRdf;
-
+  console.log(jsonld);
   return (
     <Layout>
-      <SEO title={`${namePrefix} ${name}`} />
+      <SEO title={`${namePrefix} ${name}`} jsonld={jsonld} />
       <div className="content person-page">
         <BackButton />
 
@@ -91,6 +91,7 @@ export const pageQuery = graphql`
         phone
         email
         photo
+        jsonld
         role {
           data {
             name
