@@ -21,6 +21,7 @@ const Paper = ({
     authorName,
     pdfUrl,
     bibsonomyId,
+    url,
   },
 }) => (
   <div className="paper">
