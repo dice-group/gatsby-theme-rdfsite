@@ -10,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "jsonld": "^5.2.0",
     "n3": "^1.1.1"
   }
 }
